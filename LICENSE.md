@@ -1,7 +1,1 @@
-node_modules
-.next
-out
-dist
-.env
-.env.local
-*.log
+
