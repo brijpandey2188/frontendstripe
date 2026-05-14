@@ -1,14 +1,23 @@
-'use client';
+"use client";
 
-import { Box, Container, Typography, Button, Grid, Card, CardContent, Chip } from '@mui/material';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import StarIcon from '@mui/icons-material/Star';
-import WorkspacePremiumIcon from '@mui/icons-material/WorkspacePremium';
-import Link from 'next/link';
-import { useAuth } from '../components/AuthProvider';
+import {
+  Box,
+  Container,
+  Typography,
+  Button,
+  Grid,
+  Card,
+  CardContent,
+  Chip,
+} from "@mui/material";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+import StarIcon from "@mui/icons-material/Star";
+import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
+import Link from "next/link";
+import { useAuth } from "../components/AuthProvider";
 
 type TierCard = {
-  name: 'Free' | 'Pro' | 'Max';
+  name: "Free" | "Pro" | "Max";
   price: string;
   icon: React.ReactNode;
   perks: string[];
@@ -22,36 +31,40 @@ export default function HomePage() {
 
   const tiers: TierCard[] = [
     {
-      name: 'Free',
-      price: '$0',
+      name: "Free",
+      price: "$0",
       icon: <StarIcon color="primary" />,
-      perks: ['Home access', 'About page'],
-      cta: isLoggedIn ? null : { label: 'Sign up', href: '/register' },
+      perks: ["Home access", "About page"],
+      cta: isLoggedIn ? null : { label: "Sign up", href: "/register" },
     },
     {
-      name: 'Pro',
-      price: '$9.99 / mo',
-      icon: <EmojiEventsIcon sx={{ color: 'secondary.main' }} />,
-      perks: ['Everything in Free', 'Premium content'],
-      cta: { label: 'Get Pro', href: '/subscribe?plan=pro' },
+      name: "Pro",
+      price: "$20.00 / mo",
+      icon: <EmojiEventsIcon sx={{ color: "secondary.main" }} />,
+      perks: ["Everything in Free", "Premium content"],
+      cta: { label: "Get Pro", href: "/subscribe?plan=pro" },
       highlight: true,
     },
     {
-      name: 'Max',
-      price: '$19.99 / mo',
-      icon: <WorkspacePremiumIcon sx={{ color: 'secondary.main' }} />,
-      perks: ['Everything in Pro', 'Ultra Premium content'],
-      cta: { label: 'Get Max', href: '/subscribe?plan=max' },
+      name: "Max",
+      price: "$40.00 / mo",
+      icon: <WorkspacePremiumIcon sx={{ color: "secondary.main" }} />,
+      perks: ["Everything in Pro", "Ultra Premium content"],
+      cta: { label: "Get Max", href: "/subscribe?plan=max" },
     },
   ];
 
   return (
     <Container maxWidth="lg" sx={{ py: 6 }}>
-      <Box sx={{ textAlign: 'center', mb: 6 }}>
+      <Box sx={{ textAlign: "center", mb: 6 }}>
         <Typography variant="h2" gutterBottom>
-          BrijeshAchievement
+          Test Stripe Flow
         </Typography>
-        <Typography variant="h6" color="text.secondary" sx={{ maxWidth: 720, mx: 'auto' }}>
+        <Typography
+          variant="h6"
+          color="text.secondary"
+          sx={{ maxWidth: 720, mx: "auto" }}
+        >
           Unlock premium achievements with a subscription tier that fits you.
         </Typography>
       </Box>
@@ -62,13 +75,21 @@ export default function HomePage() {
             <Card
               elevation={t.highlight ? 6 : 1}
               sx={{
-                height: '100%',
+                height: "100%",
                 borderTop: t.highlight ? 4 : 0,
-                borderColor: 'secondary.main',
+                borderColor: "secondary.main",
               }}
             >
-              <CardContent sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+              <CardContent
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  height: "100%",
+                }}
+              >
+                <Box
+                  sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}
+                >
                   {t.icon}
                   <Typography variant="h5">{t.name}</Typography>
                   {t.highlight && (
@@ -76,14 +97,17 @@ export default function HomePage() {
                       label="Popular"
                       size="small"
                       color="secondary"
-                      sx={{ ml: 'auto' }}
+                      sx={{ ml: "auto" }}
                     />
                   )}
                 </Box>
                 <Typography variant="h4" sx={{ mb: 2 }}>
                   {t.price}
                 </Typography>
-                <Box component="ul" sx={{ pl: 2.5, mb: 3, color: 'text.secondary' }}>
+                <Box
+                  component="ul"
+                  sx={{ pl: 2.5, mb: 3, color: "text.secondary" }}
+                >
                   {t.perks.map((p) => (
                     <li key={p}>{p}</li>
                   ))}
@@ -93,16 +117,23 @@ export default function HomePage() {
                   <Button
                     component={Link}
                     href={t.cta.href}
-                    variant={t.highlight ? 'contained' : 'outlined'}
-                    color={t.highlight ? 'secondary' : 'primary'}
+                    variant={t.highlight ? "contained" : "outlined"}
+                    color={t.highlight ? "secondary" : "primary"}
                     fullWidth
                   >
                     {t.cta.label}
                   </Button>
                 )}
-                {!t.cta && t.name === 'Free' && isLoggedIn && user?.tier === 'free' && (
-                  <Chip label="Current plan" color="primary" variant="outlined" />
-                )}
+                {!t.cta &&
+                  t.name === "Free" &&
+                  isLoggedIn &&
+                  user?.tier === "free" && (
+                    <Chip
+                      label="Current plan"
+                      color="primary"
+                      variant="outlined"
+                    />
+                  )}
               </CardContent>
             </Card>
           </Grid>

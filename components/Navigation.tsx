@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import {
   AppBar,
@@ -10,17 +10,17 @@ import {
   Menu,
   MenuItem,
   Avatar,
-} from '@mui/material';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
-import Link from 'next/link';
-import { useState, MouseEvent } from 'react';
-import { useAuth } from './AuthProvider';
+} from "@mui/material";
+import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
+import Link from "next/link";
+import { useState, MouseEvent } from "react";
+import { useAuth } from "./AuthProvider";
 
 const NAV_LINKS = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Premium', href: '/premium' },
-  { label: 'Ultra Premium', href: '/ultra-premium' },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Premium", href: "/premium" },
+  { label: "Ultra Premium", href: "/ultra-premium" },
 ];
 
 export default function Navigation() {
@@ -37,20 +37,20 @@ export default function Navigation() {
           component={Link}
           href="/"
           sx={{
-            display: 'flex',
-            alignItems: 'center',
+            display: "flex",
+            alignItems: "center",
             gap: 1,
-            color: 'inherit',
-            textDecoration: 'none',
+            color: "inherit",
+            textDecoration: "none",
           }}
         >
-          <EmojiEventsIcon sx={{ color: 'secondary.main' }} />
+          <EmojiEventsIcon sx={{ color: "secondary.main" }} />
           <Typography variant="h6" sx={{ fontWeight: 700 }}>
-            BrijeshAchievement
+            StripeTest
           </Typography>
         </Box>
 
-        <Box sx={{ display: 'flex', gap: 1, ml: 3 }}>
+        <Box sx={{ display: "flex", gap: 1, ml: 3 }}>
           {NAV_LINKS.map((l) => (
             <Button
               key={l.href}
@@ -72,11 +72,22 @@ export default function Navigation() {
               {user.tier.toUpperCase()}
             </Typography>
             <IconButton onClick={handleOpen} size="small">
-              <Avatar sx={{ bgcolor: 'secondary.main', color: 'primary.main', width: 32, height: 32 }}>
+              <Avatar
+                sx={{
+                  bgcolor: "secondary.main",
+                  color: "primary.main",
+                  width: 32,
+                  height: 32,
+                }}
+              >
                 {user.name.charAt(0).toUpperCase()}
               </Avatar>
             </IconButton>
-            <Menu anchorEl={anchor} open={Boolean(anchor)} onClose={handleClose}>
+            <Menu
+              anchorEl={anchor}
+              open={Boolean(anchor)}
+              onClose={handleClose}
+            >
               <MenuItem disabled>{user.email}</MenuItem>
               <MenuItem
                 onClick={() => {
